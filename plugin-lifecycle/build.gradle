@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+group='com.dsd'
+version='1.0.0'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // 本地的Maven地址设置为
+            repository(url: uri('../repos'))
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:4.1.0'
+    implementation 'com.android.tools.build:gradle-api:4.1.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}

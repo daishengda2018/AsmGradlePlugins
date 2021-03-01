@@ -1,0 +1,3 @@
+include ':plugin-lifecycle'
+include ':app'
+rootProject.name = "GradlePlugins"

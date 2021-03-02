@@ -1,4 +1,4 @@
 // include ':asm-transform'
-include ':plugin-lifecycle'
 include ':app'
 rootProject.name = "GradlePlugins"
+includeBuild("./Plugins")

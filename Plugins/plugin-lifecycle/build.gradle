@@ -24,6 +24,17 @@ uploadArchives {
     }
 }
 
+gradlePlugin {
+    plugins {
+        version {
+            // 在 app 模块需要通过 id 引用这个插件
+            id = 'plugin-lifecycle'
+            // 实现这个插件的类的路径
+            implementationClass = 'com.dsd.plugin.lifecycle.LifecyclePlugin'
+        }
+    }
+}
+
 dependencies {
     implementation gradleApi()
     implementation localGroovy()

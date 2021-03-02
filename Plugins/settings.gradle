@@ -1,0 +1,2 @@
+rootProject.name = "Plugins"
+include ':plugin-lifecycle'

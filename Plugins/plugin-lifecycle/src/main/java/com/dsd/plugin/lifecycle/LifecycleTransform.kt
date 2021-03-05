@@ -108,7 +108,7 @@ class LifecycleTransform : Transform() {
 
     private fun isTargetClazz(name: String) = (name.endsWith(".class") && !name.startsWith("R\$")
             && "R.class" != name && "BuildConfig.class" != name
-            && "android/support/v4/app/FragmentActivity.class" == name)
+            && "androidx/fragment/app/FragmentActivity.class" == name)
 
     private fun handleJarInputs(jarInput: JarInput?, outputProvider: TransformOutputProvider?) {
         val isJar = jarInput?.file?.name?.endsWith(".jar") == true

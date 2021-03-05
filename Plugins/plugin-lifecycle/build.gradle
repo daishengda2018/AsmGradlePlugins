@@ -41,4 +41,6 @@ dependencies {
     implementation 'com.android.tools.build:gradle:4.1.0'
     implementation 'com.android.tools.build:gradle-api:4.1.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // https://mvnrepository.com/artifact/com.quinn.hunter/hunter-transform
+    implementation "com.quinn.hunter:hunter-transform:1.1.0"
 }

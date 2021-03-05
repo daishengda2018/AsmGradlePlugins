@@ -32,7 +32,7 @@ class LifecycleClassAdapter(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM7, cv) {
     ): MethodVisitor? {
         val mv = cv.visitMethod(access, name, descriptor, signature, exceptions)
         //匹配FragmentActivity
-        if ("androidx/fragment/app/FragmentActivity" == this.mClazzName && name == "onCreate") {
+        if ("com/dsd/asm/MainActivity" == this.mClazzName && name == "onCreate") {
             println("LifecycleClassVisitor : change method ----> $name")
             return if (mv == null) null else LifecycleMethodAdapter(mv, access, descriptor)
         }

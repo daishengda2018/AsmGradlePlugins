@@ -2,12 +2,18 @@ package com.dsd.plugin.lifecycle.asm
 
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
+import org.objectweb.asm.commons.LocalVariablesSorter
 
 /**
  *
  * Create by im_dsd 2021/3/1 17:15
  */
-class LifecycleOnCreateMethodVisitor(methodVisitor:MethodVisitor) : MethodVisitor(Opcodes.ASM7, methodVisitor) {
+class LifecycleMethodAdapter(
+    methodVisitor: MethodVisitor,
+    access: Int,
+    descriptor: String?
+) : LocalVariablesSorter(Opcodes.ASM7, access, descriptor, methodVisitor), Opcodes  {
+
     override fun visitCode() {
         super.visitCode()
         mv.visitTypeInsn(Opcodes.NEW, "java/lang/StringBuilder");

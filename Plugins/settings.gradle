@@ -1,2 +1,3 @@
 rootProject.name = "Plugins"
 include ':plugin-lifecycle'
+include ':base-asm-transform'

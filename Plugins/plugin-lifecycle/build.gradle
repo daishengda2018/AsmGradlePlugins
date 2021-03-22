@@ -43,4 +43,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // https://mvnrepository.com/artifact/com.quinn.hunter/hunter-transform
     implementation "com.quinn.hunter:hunter-transform:1.1.0"
+    implementation project(":base-asm-transform")
 }

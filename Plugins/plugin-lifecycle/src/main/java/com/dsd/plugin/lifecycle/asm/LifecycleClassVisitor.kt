@@ -1,5 +1,6 @@
 package com.dsd.plugin.lifecycle.asm
 
+import com.mrcd.transform.asm.ExtendClassWriter
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
@@ -8,7 +9,7 @@ import org.objectweb.asm.Opcodes
  *
  * Create by im_dsd 2021/3/5 10:09
  */
-class LifecycleClassAdapter(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM7, cv) {
+class LifecycleClassVisitor(cv: ExtendClassWriter) : ClassVisitor(Opcodes.ASM7, cv) {
     private var mClazzName: String? = ""
 
     override fun visit(
@@ -34,7 +35,7 @@ class LifecycleClassAdapter(cv: ClassVisitor) : ClassVisitor(Opcodes.ASM7, cv) {
         //匹配FragmentActivity
         if ("com/dsd/asm/MainActivity" == this.mClazzName && name == "onCreate") {
             println("LifecycleClassVisitor : change method ----> $name")
-            return if (mv == null) null else LifecycleMethodAdapter(mv, access, descriptor)
+            return if (mv == null) null else LifecycleMethodViviter(mv, access, descriptor)
         }
         return mv
     }

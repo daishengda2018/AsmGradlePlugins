@@ -9,7 +9,7 @@ import org.objectweb.asm.commons.LocalVariablesSorter
  *
  * Create by im_dsd 2021/3/1 17:15
  */
-class LifecycleMethodAdapter(
+class LifecycleMethodViviter(
     methodVisitor: MethodVisitor,
     access: Int,
     descriptor: String?

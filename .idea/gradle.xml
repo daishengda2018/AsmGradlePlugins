@@ -10,7 +10,7 @@
               <build path="$PROJECT_DIR$/Plugins" name="Plugins">
                 <projects>
                   <project path="$PROJECT_DIR$/Plugins" />
-                  <project path="$PROJECT_DIR$/Plugins/base-asm-transform" />
+                  <project path="$PROJECT_DIR$/Plugins/asm-transform" />
                   <project path="$PROJECT_DIR$/Plugins/plugin-lifecycle" />
                 </projects>
               </build>
@@ -26,7 +26,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Plugins" />
-            <option value="$PROJECT_DIR$/Plugins/base-asm-transform" />
+            <option value="$PROJECT_DIR$/Plugins/asm-transform" />
             <option value="$PROJECT_DIR$/Plugins/plugin-lifecycle" />
             <option value="$PROJECT_DIR$/app" />
           </set>

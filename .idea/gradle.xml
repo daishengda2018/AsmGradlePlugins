@@ -25,10 +25,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Plugins" />
-            <option value="$PROJECT_DIR$/Plugins/asm-transform" />
-            <option value="$PROJECT_DIR$/Plugins/plugin-lifecycle" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/plugins" />
+            <option value="$PROJECT_DIR$/plugins/asm-transform" />
+            <option value="$PROJECT_DIR$/plugins/plugin-lifecycle" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

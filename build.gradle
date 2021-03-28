@@ -4,10 +4,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven {
-            // 本地Maven仓库地址
-            url uri('./repos')
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.3'
@@ -33,20 +29,22 @@ allprojects {
         google()
         jcenter()
     }
+
+    apply plugin: 'checkstyle'
+    apply plugin: 'io.gitlab.arturbosch.detekt'
+    checkstyle {
+        toolVersion = '7.4'
+    }
+    task checkstyle(type: Checkstyle) {
+        configFile new File(rootDir, "config/checkstyle/checkstyle.xml")
+        source 'src'
+        include '**/*.java'
+        classpath = files()
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-apply plugin: 'checkstyle'
-apply plugin: 'io.gitlab.arturbosch.detekt'
 apply from: "config/detekt/detekt.gradle"
-checkstyle {
-    toolVersion = '7.4'
-}
-task checkstyle(type: Checkstyle) {
-    configFile new File(rootDir, "config/checkstyle/checkstyle.xml")
-    source 'src'
-    classpath = files()
-}

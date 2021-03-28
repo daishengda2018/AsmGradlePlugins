@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
  * Created by im_dsd on 2021/3/26
  */
 public class Schedulers {
-    private static final int cpuCount = Runtime.getRuntime().availableProcessors();
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
     private final static ExecutorService EXECUTOR = new ThreadPoolExecutor(
-            0, cpuCount * 3,
+            0, CPU_COUNT * 3,
             30L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>()
     );

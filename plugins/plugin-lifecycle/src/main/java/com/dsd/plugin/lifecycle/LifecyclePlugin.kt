@@ -10,11 +10,6 @@ import org.gradle.api.Project
 import org.objectweb.asm.ClassVisitor
 
 class LifecyclePlugin : Plugin<Project> {
-
-
-
-
-
     override fun apply(project: Project) {
         val android = project.extensions.getByType(AppExtension::class.java)
         android.registerTransform(BaseTransform(project, object : AbsBytecodeResolver() {
@@ -23,8 +18,4 @@ class LifecyclePlugin : Plugin<Project> {
             }
         }))
     }
-
-
-
-
 }

@@ -12,7 +12,7 @@
 # 把找hook文件的目录设置成指定目录就好了.
 
 echo "执行 kotlin 代码规范检查..."
-./gradlew detekt 
+./gradlew detekt
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
   echo "***********************************************"

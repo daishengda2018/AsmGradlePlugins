@@ -7,11 +7,11 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="$PROJECT_DIR$/Plugins" name="Plugins">
+              <build path="$PROJECT_DIR$/plugins" name="plugins">
                 <projects>
-                  <project path="$PROJECT_DIR$/Plugins" />
-                  <project path="$PROJECT_DIR$/Plugins/asm-transform" />
-                  <project path="$PROJECT_DIR$/Plugins/plugin-lifecycle" />
+                  <project path="$PROJECT_DIR$/plugins" />
+                  <project path="$PROJECT_DIR$/plugins/asm-transform" />
+                  <project path="$PROJECT_DIR$/plugins/plugin-lifecycle" />
                 </projects>
               </build>
             </builds>

@@ -10,18 +10,23 @@
 dependencies {
    classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.14.2"
 }
-// 2 在文件末尾应用 plugin
-apply plugin: 'checkstyle'
-apply plugin: 'io.gitlab.arturbosch.detekt'
-apply from: "config/detekt/detekt.gradle"
-checkstyle {
-    toolVersion = '7.4'
-}
-task checkstyle(type: Checkstyle) {
-    configFile new File(rootDir, "config/checkstyle/checkstyle.xml")
-    source 'src'
-    classpath = files()
-}
-```
 
-然后查看 pre-commit 文件中的说明
+// 2 在 allprojects 里面添加
+allprojects {
+    apply plugin: 'checkstyle'
+    apply plugin: 'io.gitlab.arturbosch.detekt'
+    checkstyle {
+        toolVersion = '7.4'
+    }
+    task checkstyle(type: Checkstyle) {
+        configFile new File(rootDir, "config/checkstyle/checkstyle.xml")
+        source 'src'
+        include '**/*.java'
+        classpath = files()
+    }
+}
+
+// 3 在文件末尾添加 
+apply from: "config/detekt/detekt.gradle"
+```
+最后然后查看 pre-commit 文件中的说明

@@ -5,11 +5,9 @@ import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 
 /**
- *
  * Create by im_dsd 2021/3/31 17:13
  */
-class DoubleClickClassVisitor(classVisitor: ClassVisitor) :
-    ClassVisitor(Opcodes.ASM7, classVisitor) {
+class DoubleClickClassVisitor(classVisitor: ClassVisitor) : ClassVisitor(Opcodes.ASM7, classVisitor) {
     private var mInterface: Array<String>? = null
     private var isVisitedStaticBlock = false
     private var owner: String? = null

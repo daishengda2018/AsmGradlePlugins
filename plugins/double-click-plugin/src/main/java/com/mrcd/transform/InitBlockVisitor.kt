@@ -37,7 +37,7 @@ class InitBlockVisitor(
     }
 
     /**
-     * 堆栈信息在编译期就会确认好，如果添加变量，需要调
+     * 堆栈信息在编译期就会确认好，如果添加变量需要重新申请
      */
     override fun visitMaxs(maxStack: Int, maxLocals: Int) {
         // The values 3 and 0 come from the fact that our instance

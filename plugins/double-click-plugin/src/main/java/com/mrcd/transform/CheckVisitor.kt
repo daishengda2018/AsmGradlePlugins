@@ -15,7 +15,7 @@ class CheckVisitor(
             Opcodes.GETFIELD,
             owner,
             "mDoubleClickHelper",
-            "Lcom.dsd.asm.helper.DoubleClickCheck;"
+            "Lcom/dsd/asm/helper/DoubleClickCheck;"
         )
         mv.visitMethodInsn(
             Opcodes.INVOKEVIRTUAL,

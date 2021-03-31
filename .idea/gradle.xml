@@ -11,7 +11,7 @@
                 <projects>
                   <project path="$PROJECT_DIR$/plugins" />
                   <project path="$PROJECT_DIR$/plugins/asm-transform" />
-                  <project path="$PROJECT_DIR$/plugins/plugin-lifecycle" />
+                  <project path="$PROJECT_DIR$/plugins/double-click-plugin" />
                 </projects>
               </build>
             </builds>
@@ -28,7 +28,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/plugins" />
             <option value="$PROJECT_DIR$/plugins/asm-transform" />
-            <option value="$PROJECT_DIR$/plugins/plugin-lifecycle" />
+            <option value="$PROJECT_DIR$/plugins/double-click-plugin" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -12,7 +12,7 @@ import com.android.build.api.transform.TransformInput;
 import com.android.build.api.transform.TransformInvocation;
 import com.android.build.api.transform.TransformOutputProvider;
 import com.android.build.gradle.internal.pipeline.TransformManager;
-import com.mrcd.transform.asm.AbsBytecodeResolver;
+import com.mrcd.transform.asm.AbsBytecodeWeaver;
 import com.mrcd.transform.asm.ClassLoaderFactory;
 import com.mrcd.transform.concurrent.Schedulers;
 import com.mrcd.transform.concurrent.Worker;
@@ -37,12 +37,12 @@ public class BaseTransform extends Transform {
     public static final String RELEASE = "release";
     protected final Logger mLogger;
     protected final Project mProject;
-    protected AbsBytecodeResolver mBytecodeResolver;
+    protected AbsBytecodeWeaver mBytecodeResolver;
     protected final Worker mWorker;
     protected boolean isEmptyRun = false;
     protected boolean shouldCleanDexBuilderFolder = false;
 
-    public BaseTransform(Project project, AbsBytecodeResolver handler) {
+    public BaseTransform(Project project, AbsBytecodeWeaver handler) {
         mBytecodeResolver = handler;
         this.mProject = project;
         this.mLogger = project.getLogger();
@@ -151,7 +151,7 @@ public class BaseTransform extends Transform {
                 FileUtils.copyFile(input, output);
                 return null;
             }
-            mBytecodeResolver.resolverJar(input, output);
+            mBytecodeResolver.weaveJar(input, output);
             return null;
         });
     }
@@ -188,7 +188,7 @@ public class BaseTransform extends Transform {
             mWorker.submit(() -> {
                 String filePath = file.getAbsolutePath();
                 File outputFile = new File(filePath.replace(inputDirPath, outputDirPath));
-                mBytecodeResolver.resolveClass(file, outputFile, inputDirPath);
+                mBytecodeResolver.weaveClass(file, outputFile, inputDirPath);
                 return null;
             });
         }
@@ -242,7 +242,7 @@ public class BaseTransform extends Transform {
 
     protected void transformSingleFile(final File src, final File des, final String srcBaseDir) {
         mWorker.submit(() -> {
-            mBytecodeResolver.resolveClass(src, des, srcBaseDir);
+            mBytecodeResolver.weaveClass(src, des, srcBaseDir);
             return null;
         });
     }

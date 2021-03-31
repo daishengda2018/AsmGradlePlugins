@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="My_Application.app" target="1.8" />
       <module name="Plugins.base-asm-transform" target="1.7" />
+      <module name="plugins.double-click-plugins" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

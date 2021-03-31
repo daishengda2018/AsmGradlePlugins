@@ -23,17 +23,17 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
- * 字节码处理器
+ * 字节码编织器
  * 需要自己实现 {@link #getClassVisitor(ExtendClassWriter)} 按需处理字节码
  * Created by dsd on 22/3/26 18:00
  */
-public abstract class AbsBytecodeResolver {
+public abstract class AbsBytecodeWeaver {
 
     protected static final FileTime ZERO_TIME = FileTime.fromMillis(0);
     protected ClassLoader mClassLoader;
 
     @WorkerThread
-    public void resolverJar(File input, File output) throws IOException {
+    public void weaveJar(File input, File output) throws IOException {
         // 本质上 jar 包就是 zip 包，只是额外附加了一些固定的描述文件
         // https://www.liaoxuefeng.com/wiki/1252599548343744/1298366336073762
         ZipFile inputZip = new ZipFile(input);
@@ -51,11 +51,11 @@ public abstract class AbsBytecodeResolver {
             byte[] newEntryContent;
             //  entry 的分隔符永远是 '/' 在 Windows 上也是
             String className = outEntry.getName().replace("/", ".");
-            if (!isResolveAble(className)) {
+            if (!isWeaveAble(className)) {
                 // 不能处理直接转换待写入 output
                 newEntryContent = org.apache.commons.io.IOUtils.toByteArray(originalFile);
             } else {
-                newEntryContent = resolveClass(originalFile);
+                newEntryContent = weaveClass(originalFile);
             }
             // 提取指纹
             CRC32 crc32 = new CRC32();
@@ -88,16 +88,16 @@ public abstract class AbsBytecodeResolver {
      * @param inputBaseDir 输入的跟地址
      */
     @WorkerThread
-    public void resolveClass(File input, File output, String inputBaseDir) throws IOException {
+    public void weaveClass(File input, File output, String inputBaseDir) throws IOException {
         if (!inputBaseDir.endsWith(File.separator)) {
             inputBaseDir = inputBaseDir + File.separator;
         }
         String path = input.getAbsolutePath().replace(inputBaseDir, "")
                 .replace(File.separator, ".");
-        if (isResolveAble(path)) {
+        if (isWeaveAble(path)) {
             FileUtils.touch(output);
             InputStream inputStream = new FileInputStream(input);
-            byte[] bytes = resolveClass(inputStream);
+            byte[] bytes = weaveClass(inputStream);
             FileOutputStream fos = new FileOutputStream(output);
             fos.write(bytes);
             fos.close();
@@ -115,7 +115,7 @@ public abstract class AbsBytecodeResolver {
      * @return ASM 处理后的 class byteArray
      */
     @WorkerThread
-    public byte[] resolveClass(InputStream inputStream) throws IOException {
+    public byte[] weaveClass(InputStream inputStream) throws IOException {
         ClassReader classReader = new ClassReader(inputStream);
         ExtendClassWriter classWriter = new ExtendClassWriter(mClassLoader, ClassWriter.COMPUTE_MAXS);
         ClassVisitor classWriterWrapper = getClassVisitor(classWriter);
@@ -137,7 +137,7 @@ public abstract class AbsBytecodeResolver {
      *
      * @param fullQualifiedClassName class 带有包名的全称
      */
-    public boolean isResolveAble(String fullQualifiedClassName) {
+    public boolean isWeaveAble(String fullQualifiedClassName) {
         return fullQualifiedClassName.endsWith(".class")
                 && !fullQualifiedClassName.contains("R$")
                 && !fullQualifiedClassName.contains("R.class")

@@ -15,13 +15,13 @@ buildscript {
 }
 
 /**
- * 如果在多项目构建中，可能想把插件应用到子项目中，apply false 来告诉 Gradle 不要应用插件
+ * 如果在多项目构建(组合编译)中，可能不想把插件应用到子项目中，apply false 来告诉 Gradle 不要在子项目中应用
  *
  * plugins {} 默认的行为是解析和应用插件
  */
 plugins {
-    // 这个 id 就是在 plugin-lifecycle 文件夹下 build.gradle 文件内定义的id
-    id "plugin-lifecycle" apply false
+    // 这个 id 就是在 double-click-plugin 文件夹下 build.gradle 文件内定义的id
+    id "double-click-plugin" apply false
 }
 
 allprojects {
